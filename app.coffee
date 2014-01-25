@@ -1,9 +1,8 @@
-express = require('express')
-routes = require('./routes')
-user = require('./routes/user')
-http = require('http')
-{ join } = require('path')
+express = require 'express'
+http = require 'http'
+{ join } = require 'path'
 assets = require 'connect-assets'
+load = require 'express-load'
 
 module.exports = app = express()
 
@@ -15,16 +14,15 @@ app.use express.logger('dev')
 app.use express.json()
 app.use express.urlencoded()
 app.use express.methodOverride()
-app.use assets()
+app.use assets(pathsOnly: yes, helperContext: app.locals)
 app.use app.router
 app.use express.static( join(__dirname, 'public') )
 
-if 'development' == app.get('env')
+if 'development' is app.get('env')
   app.use express.errorHandler()
 
-
-app.get '/', routes.index
-app.get '/users', user.list
+load('locals').then('routes').into(app)
+load('routes').into(app)
 
 http.createServer(app).listen app.get('port'), ->
   console.log 'Express server listening on port ' + app.get('port')

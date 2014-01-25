@@ -1,2 +1,5 @@
-exports.index = (req, res) ->
-  res.render 'index', { title: 'Express' }
+module.exports = (app) ->
+
+
+ app.get '/', (req, res) ->
+  res.render 'index', title: 'ecobici.mx'

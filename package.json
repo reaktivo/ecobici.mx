@@ -9,6 +9,8 @@
     "express": "~3.4.8",
     "jade": "*",
     "coffee-script": "~1.6.3",
-    "connect-assets": "~2.5.3"
+    "connect-assets": "~2.5.3",
+    "express-load": "~1.1.8",
+    "stylus": "~0.42.1"
   }
 }
