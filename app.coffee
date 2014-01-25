@@ -9,7 +9,7 @@ module.exports = app = express()
 nconf.env().file(file: join(__dirname, 'config.json'))
 process.env.NODE_ENV = nconf.get('NODE_ENV')
 
-app.set 'port', nconf.env.get('PORT') or 3000
+app.set 'port', nconf.get('PORT') or 3000
 app.set 'views', join(__dirname, 'views')
 app.set 'view engine', 'jade'
 app.use express.favicon()
